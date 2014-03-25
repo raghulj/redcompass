@@ -5,7 +5,7 @@ import json
 from django.http import HttpResponse
 from django.utils import timezone
 
-from compass.utils import opencellid
+from utils import opencellid
 
 
 def index(request):
@@ -21,7 +21,7 @@ def update_location(request):
 	cellid = request.POST.get("cellid", "")
 
 	data = opencellid.get_coordinates(mcc, mnc,lac, cellid)
-	#print data
+	print data
 	if not data:
 		return
 
@@ -31,7 +31,7 @@ def update_location(request):
 		compass = Compass(latitude=lat,longitude=lon, last_ping=timezone.now())
 		compass.save()
 	else:
-		d =  "no proper input"
+		print "no proper input"
 	to_json = {
 		"success": "ok"
 	}
