@@ -22,7 +22,7 @@ def get_coordinates(mcc, mnc,lac, cellid):
 
     # check. Substitute with appropriate HTTP code.
     if connection.code == 200:
-       data = connection.read()
+       data = connection.read().decode('utf-8')
        if data:
            xmldoc = parseString(data)
            itemlist = xmldoc.getElementsByTagName('cell') 
