@@ -1,0 +1,28 @@
+<html>
+  <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+{% block head %} {% endblock %}
+
+    {% if title %}
+    <title>{{title}} - DB Locator</title>
+    {% else %}
+    <title>Redcompass</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>RedCompass</div>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>
