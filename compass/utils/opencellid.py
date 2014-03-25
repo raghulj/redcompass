@@ -30,14 +30,17 @@ def get_coordinates(mcc, mnc,lac, cellid):
 	    data = connection.read()
 	    if data:
 			xmldoc = parseString(data)
-			itemlist = xmldoc.getElementsByTagName('cell') 
-			lat = itemlist[0].attributes['lat'].value
-			lon = itemlist[0].attributes['lon'].value
-			return [lat, lon]
+			itemlist = xmldoc.getElementsByTagName('cell')
+      			if itemlist: 
+				lat = itemlist[0].attributes['lat'].value
+  				lon = itemlist[0].attributes['lon'].value
+  				return [lat, lon]
+      			else:
+        			return []
 	else:
 	    # handle the error case. connection.read() will still contain data
 	    # if any was returned, but it probably won't be of any use
-	    print "error"
+	    return []
 
 
 if __name__ == '__main__':

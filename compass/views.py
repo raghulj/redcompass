@@ -23,16 +23,24 @@ def update_location(request):
 	data = opencellid.get_coordinates(mcc, mnc,lac, cellid)
 	print data
 	if not data:
-		return
+                to_json = {
+                "success": "not"
+                }
+ 		return HttpResponse(json.dumps(to_json), mimetype='application/json')
 
 	lat = data[0]
 	lon = data [1]
 	if lat and lon:
 		compass = Compass(latitude=lat,longitude=lon, last_ping=timezone.now())
 		compass.save()
+		to_json = {
+		"success": "ok",
+		"lat" : lat,
+		"lon" : lon
+		}
 	else:
-		print "no proper input"
-	to_json = {
-		"success": "ok"
-	}
+		to_json = {
+		"success": "not"
+		}
+
 	return HttpResponse(json.dumps(to_json), mimetype='application/json')
